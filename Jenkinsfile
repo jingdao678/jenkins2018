@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
+                sh 'chmod 777 flakey-deploy.sh'
                 retry(3) {
                     sh './flakey-deploy.sh'
                 }
