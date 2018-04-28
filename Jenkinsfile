@@ -1,9 +1,15 @@
-node {
-    try{
+pipeline {
+    agent any
+    stages {
         stage('Test') {
-            sh './gradlew check'
+            steps {
+                sh './gradlew check'
+            }
         }
-    finally {
-        junit 'build/reports/**/*.xml'
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
     }
 }
